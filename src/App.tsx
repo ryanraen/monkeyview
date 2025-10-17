@@ -22,7 +22,7 @@ export default function App() {
 
   return (
     <div className="min-h-screen w-full bg-gray-950 text-gray-100 p-4">
-      <h1 className="text-2xl font-bold mb-4 text-center">monkeyview</h1>
+      <h1 className="text-2xl font-bold mb-4 text-center">🐒 monkeyview</h1>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4 items-center">
         <div className="w-full flex justify-center">
           <div className="w-full max-w-xl aspect-video bg-black rounded-lg overflow-hidden">

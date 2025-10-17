@@ -57,7 +57,7 @@ export default function ExpressionAnalyzer({ videoEl, onMonkeyChange, intervalMs
     // Simplified pointing: any wrist clearly above the face reference line
     const eyeY = leftEyeOuter && rightEyeOuter ? Math.min(leftEyeOuter.y, rightEyeOuter.y) : undefined;
     const browY = rightBrow && leftBrow ? Math.min(rightBrow.y, leftBrow.y) : rightBrow?.y;
-    const faceRefY = (browY ?? eyeY ?? 0.5) + 0.05; // lower the bar so not too high
+    const faceRefY = (browY ?? eyeY ?? 0.5) + 0.4; // lower the bar so not too high
     const rightAboveFace = rightWrist && faceRefY != null ? rightWrist.y < faceRefY : false;
     const leftAboveFace = leftWrist && faceRefY != null ? leftWrist.y < faceRefY : false;
     const handAboveFace = rightAboveFace || leftAboveFace;
@@ -65,12 +65,12 @@ export default function ExpressionAnalyzer({ videoEl, onMonkeyChange, intervalMs
     // Specific mapping for provided images
     // 1) pointing_up_smiling: hand above face line + smile
     if (handAboveFace && smile > 0.12) {
-      onMonkeyChange('/monkeys/pointing_up_smiling.png', 'Pointing Up Smiling');
+      onMonkeyChange('/monkeys/pointing_up_smiling.png', '☝️🤓');
       return;
     }
     // 2) shocked_mouth_open: mouth open only (scale-normalized)
     if (mouthOpen > 0.38) {
-      onMonkeyChange('/monkeys/shocked_mouth_open.png', 'Shocked Mouth Open');
+      onMonkeyChange('/monkeys/shocked_mouth_open.png', '😱😲😲');
       return;
     }
     // 3) thinking_finger_in_mouth: detect wrist close to mouth center (proxy for finger near mouth)
@@ -85,11 +85,11 @@ export default function ExpressionAnalyzer({ videoEl, onMonkeyChange, intervalMs
     const dLeft = distance2D(mouthCenter as any, idx1 || leftWrist as any);
     const nearMouth = Math.min(dRight, dLeft) < 0.18;
     if (nearMouth) {
-      onMonkeyChange('/monkeys/thinking_finger_in_mouth.png', 'Thinking Finger In Mouth');
+      onMonkeyChange('/monkeys/thinking_finger_in_mouth.png', '🤔');
       return;
     }
     // 4) default neutral
-    onMonkeyChange('/monkeys/neutral_expression.png', 'Neutral Expression');
+    onMonkeyChange('/monkeys/neutral_expression.png', '😐');
   }, [onMonkeyChange, videoEl]);
 
   const tick = useCallback(() => {
