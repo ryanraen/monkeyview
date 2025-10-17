@@ -8,9 +8,11 @@ export default function App() {
   const [monkeyPath, setMonkeyPath] = useState('/monkeys/neutral_expression.png')
   const [label, setLabel] = useState('Detecting…')
   const videoRef = useRef<HTMLVideoElement | null>(null)
+  const [videoEl, setVideoEl] = useState<HTMLVideoElement | null>(null)
 
   const handleStreamReady = useCallback((video: HTMLVideoElement) => {
     videoRef.current = video
+    setVideoEl(video)
   }, [])
 
   const handleMonkeyChange = useCallback((path: string, lbl: string) => {
@@ -29,7 +31,7 @@ export default function App() {
         </div>
         <MonkeyDisplay imagePath={monkeyPath} label={label} />
       </div>
-      <ExpressionAnalyzer videoEl={videoRef.current} onMonkeyChange={handleMonkeyChange} />
+      <ExpressionAnalyzer videoEl={videoEl} onMonkeyChange={handleMonkeyChange} />
     </div>
   )
 }
