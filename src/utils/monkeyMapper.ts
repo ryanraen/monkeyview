@@ -84,8 +84,9 @@ export function getMatchingMonkey(features: ExpressionFeatures): MonkeyMatch {
 }
 
 export function getDefaultMonkey(): MonkeyMatch {
-  const confused = resolveByCategory('confused', '/monkeys/confused.png');
-  return { label: labelFromUrl(confused), imagePath: confused };
+  // Default to neutral if present; otherwise fallback chain
+  const neutral = resolveByCategory('confused', '/monkeys/neutral_expression.png');
+  return { label: labelFromUrl(neutral), imagePath: neutral };
 }
 
 

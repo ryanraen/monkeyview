@@ -3,10 +3,9 @@ import './index.css'
 import CameraFeed from './components/CameraFeed'
 import MonkeyDisplay from './components/MonkeyDisplay'
 import ExpressionAnalyzer from './components/ExpressionAnalyzer'
-import { getDefaultMonkey } from './utils/monkeyMapper'
 
 export default function App() {
-  const [monkeyPath, setMonkeyPath] = useState(getDefaultMonkey().imagePath)
+  const [monkeyPath, setMonkeyPath] = useState('/monkeys/neutral_expression.png')
   const [label, setLabel] = useState('Detecting…')
   const videoRef = useRef<HTMLVideoElement | null>(null)
 
